@@ -10,28 +10,46 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet"> 
     <title>Super Mario</title>
 </head>
-<body onkeydown="counterVal()">
+<body>
+
+    <!--A container was created in order to adjust the buttons positions using Flexbox-->
+
     <div class="container-menu">
-        <div id="title"> 
-            <h1>Super Mario</h1>
+        <div id="title">
+            <img src="./Images/super-mario-brand.png" id="brand">
+            <!-- <h1>Super Mario</h1> -->
         </div>
-        <div class="scoreTabel">
-            <h1>SCORE</h1>
-            <div class="score">
-                
-            </div>
+        <div class="scoreTable">
+            <h1> SCORE </h1>
+            <div class="score"></div>
         </div>
-        <div class="restartButton">
+            <div class="audio">
+               
+                <audio id="game-over"src="./Audio/game-over.mp3"></audio>
+                <audio id="superMarioSong"src="./Audio/musica-app.mp3" autoplay></audio>
 
-        </div>       
+                <button onclick="disableAutoplay()" class="soundButton">
+                    <input type="image" src="./Images/sound-off.jpg" class="controls">
+                </button>
+                <button onclick="enableAutoplay()" class="soundButton">
+                    <input type="image" src="./Images/sound-on.jpg" class="controls">
+                </button>
+
+        </div> 
+        <div class="restartButton"></div>
     </div>
-
+        
+        <!--This div was created to import the game images-->
         <div class="game">
             <img src="./Images/super-mario.gif" id="super-mario">
             <img src="./Images/clouds-gamer.png" id="clouds-game">
             <img src="./Images/pipe-game.png" id="pipe-game">
-        </div>
+        </div>   
+    </div>
   
+  
+    <!--Here the script was imported-->
     <script src="./index.js"></script>
+
 </body>
 </html>

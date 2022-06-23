@@ -2,6 +2,8 @@ const superMario = document.querySelector("#super-mario");
 const pipe = document.querySelector("#pipe-game");
 const clouds = document.querySelector("#clouds-game");
 
+
+//Creating the jump function
     const jump = () => {
         superMario.classList.add("jump-mario");
         
@@ -10,6 +12,23 @@ const clouds = document.querySelector("#clouds-game");
         }, 500);
 
     }
+
+//Implementing the score
+    var point = 0;
+    
+    function counterVal(){
+        point += 1;
+        updateDisplay(point);
+    }
+
+    function updateDisplay(val) {
+        document.querySelector(".score").innerHTML = val;
+}
+
+    const score = setInterval(counterVal,1500);
+
+
+//Creating a function with the conditions for the game to stop 
 
     const loopgame = setInterval(() => {
         const pipePosition = pipe.offsetLeft;
@@ -33,6 +52,12 @@ const clouds = document.querySelector("#clouds-game");
 
                 clearInterval(loopgame);
 
+                clearInterval(score);
+
+                disableAutoplay() 
+
+                enableGameOver()
+
                 restartButton();
                 }
         
@@ -41,25 +66,43 @@ const clouds = document.querySelector("#clouds-game");
     document.addEventListener("keydown", jump);
 
 
-const restartButton = () => {
-    const button = document.createElement("button");
-    button.innerHTML = "RESTART";
-    button.classList.add("restartButton");
+//Function related  to the restart button
+    const restartButton = () => {
+        const button = document.createElement("button");
+        button.innerHTML = "RESTART";
+        button.classList.add("addRestartButton");
 
-    const btn = document.querySelector(".restartButton");
-    btn.appendChild(button)
+        const btn = document.querySelector(".restartButton");
+        btn.appendChild(button)
 
-    button.addEventListener("click", ()=>{location.reload()});
-}
-
-var point = 0;
-
-function counterVal(){
-    point += 1;
-    updateDisplay(point);
-}
+        button.addEventListener("click", ()=>{location.reload()});
+    }
 
 
-function updateDisplay(val) {
-    document.querySelector(".score").innerHTML = val;
-}
+
+//Setting the "game over" sound and the final alert
+
+    let gameOver = document.querySelector("#game-over");
+
+    function enableGameOver() { 
+        gameOver.autoplay = true;
+        gameOver.load();
+
+        alert("GAME OVER \n \n Click on RESTART to play again.");
+    }
+
+ //Function to start/pause audio
+
+ let superMarioSong = document.querySelector("#superMarioSong");
+
+ function disableAutoplay() { 
+     if(superMarioSong.autoplay = true){
+     superMarioSong.autoplay = false;
+     superMarioSong.load();
+     }
+ }
+
+ function enableAutoplay() { 
+     superMarioSong.autoplay = true;
+     superMarioSong.load();
+ }
